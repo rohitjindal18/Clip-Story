@@ -1,0 +1,48 @@
+.flowplayer .fp-elapsed {display: none;}
+.flowplayer .fp-play {display: none;}
+.flowplayer .fp-controls {display: none;}
+.flowplayer .fp-pause {display: none;}
+.flowplayer .fp-quality-selector { display: none; }
+
+.flowplayer .fp-controls, .flowplayer .fp-time {
+    display: none;
+}
+
+.flowplayer:active {
+    background-color: #ccc;
+ }
+
+.flowplayer .fp-header .fp-share { display: none; }
+.flowplayer .fp-playlist { display: none;}
+
+a {
+    opacity: 0 !important;
+    z-index: -1 !important;
+}
+
+.mainDiv {
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.flowplayer {
+    background-color: none;
+    color: #fff;
+}
+
+.flowplayer .fp-default-playlist{
+    background-color: #fff !important;
+  }
+
+.fp-context-menu {
+    display: none !important;
+}
+
+* { -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
