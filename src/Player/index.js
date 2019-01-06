@@ -1,5 +1,6 @@
 import React from 'react';
 import flowplayer from 'flowplayer';
+import { throttle } from '../utils';
 
 export default class Player extends React.PureComponent {
 
@@ -9,18 +10,22 @@ export default class Player extends React.PureComponent {
             setPlayer
         } = this.props;
         flowplayer(this.player, {
-            playlist: videos,
+            // playlist: videos,
             autoplay: true,
-            clip: videos && videos[0]
+            clip: videos && videos[0],
+            preload: 'auto'
         }).on('ready', (api, root, video) => {
+            root.mute(true);
             setPlayer(root);
         }).on('pause', (e, root) => {
             if (root.video.time < root.video.duration && !this.props.userPaused) {
                 root.resume();
             }
         }).on('finish', (e, root) => {
-            root.next();
-        });
+            this.props.onVideoFinished(root);
+        }).on('progress', throttle((api, root,time) => {
+            this.props.onProgress(root, time);
+        }, 1000));
     }
 
     componentDidMount() {
@@ -33,7 +38,7 @@ export default class Player extends React.PureComponent {
 
     render() {
         return(
-            <div ref={this.setRef} id='player'/>
+            <div ref={this.setRef} id='player' preload='auto'/>
         );
     }
 }
